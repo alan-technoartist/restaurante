@@ -6,3 +6,6 @@
 #include <iostream>
 
 // TODO: Reference additional headers your program requires here.
+//#include "../BD/bd.hpp"
+//#include "../Cocina/cocina.hpp"
+//#include "../Ventas/ventas.hpp"

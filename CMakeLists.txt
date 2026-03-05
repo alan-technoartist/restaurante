@@ -13,5 +13,10 @@ endif()
 
 project ("Restaurante")
 
-# Include sub-projects.
+set(MYSQL_DIR "C:/Program Files/MySQL/MySQL Connector C++ 9.6")
+
+# Encabezados externos
+include_directories(${MYSQL_DIR}/include/)
+
+# Subdirectorios
 add_subdirectory ("Restaurante")

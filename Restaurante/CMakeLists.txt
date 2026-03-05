@@ -2,8 +2,11 @@
 # project specific logic here.
 #
 
-# Add source to this project's executable.
-add_executable (Restaurante "Restaurante.cpp" "Restaurante.hpp" "BD/InterfazSQL.cpp")
+# Carpeta de encabezados
+include_directories(${PROJECT_SOURCE_DIR}/include/)
+
+# Programa principal (ejecutable)
+add_executable (Restaurante "Restaurante.cpp" "BD/InterfazSQL.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Restaurante PROPERTY CXX_STANDARD 20)
