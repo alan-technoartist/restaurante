@@ -1,9 +1,12 @@
 ﻿#include <iostream>
-#include "include/Restaurante.hpp"
+#include <Restaurante.hpp>
 
 int main()
 {
-	std::cout << "Iniciando sistema..." << std::endl;
+	InterfazSQL isql;
+
+	isql.mostrarMenu();
+
 
 	return 0;
 }

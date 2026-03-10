@@ -1,13 +1,13 @@
-﻿# CMakeList.txt : CMake project for Restaurante, include source and define
-# project specific logic here.
-#
+﻿# Carpeta de encabezados general
+include_directories(${PROJECT_SOURCE_DIR}/Restaurante/include/)
 
-# Carpeta de encabezados
-include_directories(${PROJECT_SOURCE_DIR}/include/)
+# Subcarpetas
+add_subdirectory ("BD")
 
 # Programa principal (ejecutable)
-add_executable (Restaurante "Restaurante.cpp" "BD/InterfazSQL.cpp")
+add_executable (Restaurante "Restaurante.cpp")
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET Restaurante PROPERTY CXX_STANDARD 20)
-endif()
+# Módulo BD
+target_link_libraries(Restaurante PRIVATE InterfazSQL)
+
+

@@ -2,16 +2,23 @@
 #include <mysql/jdbc.h>
 
 #include "InterfazSQL.hpp"
+#include "Credenciales.hpp"
 
 InterfazSQL::InterfazSQL() {
 	// Obtener singleton
 	sql::Driver* driver = sql::mysql::get_driver_instance();
 
-	// Conectar al servidor
-	con.reset(driver->connect("localhost", "alan", "technoartist"));
+	Credenciales credenciales;
+	//credenciales.agregarUsuario();
+	credenciales = credenciales.obtenerDatos();
 
-	// Equivalente a "USE escuela"
-	con->setSchema("escuela");
+	// Conectar al servidor
+	con.reset(driver->connect(credenciales.servidor,
+							  credenciales.usuario,
+							  credenciales.contrasena));
+
+	// Equivalente a "USE restaurante"
+	con->setSchema("restaurante");
 }
 
 void InterfazSQL::mostrarDatosBD(const std::string& campos,
@@ -71,6 +78,8 @@ void InterfazSQL::insertarDatosBD(const std::string& tabla,
 }
 
 void InterfazSQL::mostrarMenu() {
+	std::cout << "Menu restaurante:" << std::endl;
+
 	std::string query = "SELECT nombre_platillo, costo_platillo FROM menu";
 
 	// Crear objeto Statement
@@ -82,7 +91,7 @@ void InterfazSQL::mostrarMenu() {
 	// Leer resultado
 	while (res->next()) {
 		std::cout << res->getString("nombre_platillo") << "\t"
-					<< res->getDouble("costo_platillo") << std::endl;
+				  << res->getDouble("costo_platillo") << std::endl;
 	}
 }
 
@@ -98,7 +107,7 @@ void InterfazSQL::mostrarHistorialVentas() {
 	// Leer resultado
 	while (res->next()) {
 		std::cout << res->getString("fecha_venta") << "\t"
-					<< res->getDouble("total_venta") << std::endl;
+				  << res->getDouble("total_venta") << std::endl;
 	}
 }
 
