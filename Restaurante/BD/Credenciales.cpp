@@ -41,10 +41,11 @@ Credenciales& Credenciales::obtenerDatos() {
 	if (archivo.is_open()) {
 		archivo.read(reinterpret_cast<char*>(&credenciales), sizeof(credenciales));
 		archivo.close();
-
+		/*
 		std::cout << credenciales.servidor << " "
 				  << credenciales.usuario << " "
 				  << credenciales.contrasena << std::endl;
+		*/
 	}
 	else {
 		std::cerr << "Error al abrir el archivo" << std::endl;

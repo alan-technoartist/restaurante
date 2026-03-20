@@ -5,7 +5,7 @@ include_directories(${PROJECT_SOURCE_DIR}/Restaurante/include/)
 add_subdirectory ("BD")
 
 # Programa principal (ejecutable)
-add_executable (Restaurante "Restaurante.cpp")
+add_executable (Restaurante "Restaurante.cpp" "Mesas/Mesa.cpp" "Cocina/Cocina.cpp" "Ventas/Ventas.cpp")
 
 # Módulo BD
 target_link_libraries(Restaurante PRIVATE InterfazSQL)

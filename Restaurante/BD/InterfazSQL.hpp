@@ -1,5 +1,8 @@
+#pragma once
+
 #include <iostream>
 #include <mysql/jdbc.h>
+#include <Common.hpp>
 
 class InterfazSQL {
 private:
@@ -7,6 +10,9 @@ private:
 
 public:
 	InterfazSQL();
+
+	static std::shared_ptr<InterfazSQL> obtenerInstancia();
+
 
 	void mostrarDatosBD(const std::string& campos,
 		const std::string& tabla,
@@ -19,5 +25,9 @@ public:
 	void mostrarMenu();
 
 	void mostrarHistorialVentas();
+
+	float obtenerCostoPlatillo(int idPlatillo);
+
+	void registarVenta(Venta venta);
 
 };
