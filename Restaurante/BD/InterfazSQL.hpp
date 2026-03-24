@@ -26,8 +26,8 @@ public:
 
 	void mostrarHistorialVentas();
 
-	float obtenerCostoPlatillo(int idPlatillo);
+	Platillo obtenerInfoPlatillo(int idPlatillo);
 
-	void registarVenta(Venta venta);
+	void registarVenta(float subtotal, float iva, float total);
 
 };

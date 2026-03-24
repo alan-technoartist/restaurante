@@ -9,35 +9,43 @@ Mesa::Mesa(int n, bool d, bool v)
 	  vip(v) {
 }
 
+void Mesa::setPrioridad(bool alta) {
+	if (alta) vip = true;
+}
+
+
 void Mesa::tomarOrden() {
 	std::shared_ptr<InterfazSQL> isql = InterfazSQL::obtenerInstancia();
 
-	Platillo platillo1;
-	platillo1.id = 3; // Milanesa
-	platillo1.costo = isql->obtenerCostoPlatillo(platillo1.id);
+	Platillo platillo;
+	int id;
 
-	std::cout << "Platillo id 3 costo : $" << platillo1.costo << std::endl;
+	int num_platillos = 2;
 
-	Platillo platillo2;
-	platillo2.id = 2; // Tacos
-	platillo2.costo = isql->obtenerCostoPlatillo(platillo2.id);
+	// Orden del cliente
+	for (int i = 1; i <= num_platillos; i++) {
+		std::cout << "Platillo: ";
+		std::cin >> id;
+		platillo.id = id;
+		platillo = isql->obtenerInfoPlatillo(platillo.id);
 
-	std::cout << "Platillo id 2 costo : $" << platillo2.costo << std::endl;
+		comanda.push_back(platillo);
 
-	comanda.push_back(platillo1);
-	comanda.push_back(platillo2);
+	}
+
+	enviarOrden();
 }
 
 void Mesa::enviarOrden() {
 	auto cocina = Cocina::obtenerInstancia();
 
 	cocina->encolarOrden(numMesa, comanda, vip);
-
 }
 
 void Mesa::pagarCuenta() {
 	Ventas venta;
-	venta.imprimirTotal(comanda);
 
-	venta.cerrarCuenta(comanda);
+	venta.cerrarCuenta(this->numMesa, this->comanda);
+
+	this->disponible = true;
 }

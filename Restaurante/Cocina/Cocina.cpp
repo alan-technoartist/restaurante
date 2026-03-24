@@ -10,10 +10,8 @@ std::shared_ptr<Cocina> Cocina::obtenerInstancia() {
 	return instanciaUnica;
 }
 
-void Cocina::encolarOrden(int numMesa, std::list<Platillo>& platillos, bool prioridad) {
-	Orden orden;
-	orden.platillos = platillos;
-	orden.numMesa = numMesa;
+void Cocina::encolarOrden(int numMesa, const std::list<Platillo>& platillos, bool prioridad) {
+	auto orden = std::pair<int, std::list<Platillo>>(numMesa, platillos);
 
 	if (prioridad) {
 		colaCocina.push_front(orden);
@@ -21,16 +19,17 @@ void Cocina::encolarOrden(int numMesa, std::list<Platillo>& platillos, bool prio
 	else {
 		colaCocina.push_back(orden);
 	}
-	std::cout << "Orden de mesa " << numMesa << " encolada con prioridad "
-		<< ((prioridad)?"ALTA":"NORMAL") << std::endl;
+	/*std::cout << "Orden de mesa " << orden.first << " encolada con prioridad "
+		<< ((prioridad)?"ALTA":"NORMAL") << std::endl;*/
 
+	// Interfaz pública
+	prepararOrden();
 }
 
 void Cocina::prepararOrden() {
-	Orden orden = colaCocina.front();
 
-	for (auto& platillo : orden.platillos) {
-		std::cout << "Preparando " << platillo.id << std::endl;
+	for (const auto& platillo : colaCocina.front().second) {
+		std::cout << "Preparando " << platillo.nombre << std::endl;
 	}
 
 	colaCocina.pop_front();
@@ -44,11 +43,11 @@ void Cocina::mostrarColaCocina() {
 
 	std::cout << "Mesa\tPlatillo" << std::endl;
 
-	for (auto& orden : colaCocina) {
-		std::cout << orden.numMesa << "\t";
+	for (const auto& orden : colaCocina) {
+		std::cout << orden.first << "\t";
 
-		for (auto& platillo : orden.platillos) {
-			std::cout << platillo.id << ", ";
+		for (const auto& platillo : orden.second) {
+			std::cout << platillo.nombre << ", ";
 		}
 		std::cout << std::endl;
 	}

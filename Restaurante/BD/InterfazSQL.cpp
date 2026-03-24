@@ -87,7 +87,7 @@ void InterfazSQL::insertarDatosBD(const std::string& tabla,
 }
 
 void InterfazSQL::mostrarMenu() {
-	std::cout << "Menu restaurante:" << std::endl;
+	std::cout << "===========MENU===============" << std::endl;
 
 	std::string query = "SELECT idmenu, nombre_platillo, costo_platillo FROM menu";
 
@@ -103,6 +103,9 @@ void InterfazSQL::mostrarMenu() {
 				  << res->getString("nombre_platillo") << "\t$ "
 				  << res->getDouble("costo_platillo") << std::endl;
 	}
+
+	std::cout << "=============================" << std::endl;
+
 }
 
 void InterfazSQL::mostrarHistorialVentas() {
@@ -114,15 +117,21 @@ void InterfazSQL::mostrarHistorialVentas() {
 	// Ejecutar query y asignar a ResultSet
 	std::unique_ptr< sql::ResultSet > res(stmt->executeQuery(query));
 
+
+	std::cout << "===========VENTAS===============" << std::endl;
+
 	// Leer resultado
 	while (res->next()) {
 		std::cout << res->getString("fecha_venta") << "\t$"
 				  << res->getDouble("total_venta") << std::endl;
 	}
+
+	std::cout << "================================" << std::endl;
+
 }
 
-float InterfazSQL::obtenerCostoPlatillo(int idPlatillo) {
-	std::string query = "SELECT costo_platillo FROM menu where idmenu = ?";
+Platillo InterfazSQL::obtenerInfoPlatillo(int idPlatillo) {
+	std::string query = "SELECT nombre_platillo, costo_platillo FROM menu where idmenu = ?";
 
 	// Crear objeto PreparedStatement
 	std::unique_ptr<sql::PreparedStatement> pst(con->prepareStatement(query));
@@ -136,16 +145,23 @@ float InterfazSQL::obtenerCostoPlatillo(int idPlatillo) {
 	// Obtener resultados del query
 	res->next();
 
+	Platillo platillo;
+
 	if (res->rowsCount() == 0) {
-		std::cout << "No se encontraron registros" << std::endl;
-		return 0.0f;
+		std::cerr << "No se encontraron registros" << std::endl;
+		return platillo;
 	}
 
-	return static_cast<float>(res->getDouble("costo_platillo"));
+	platillo.id = idPlatillo;
+	platillo.nombre = res->getString("nombre_platillo");
+	platillo.costo = static_cast<float>(res->getDouble("costo_platillo"));
+
+	return platillo;
 
 }
 
-void InterfazSQL::registarVenta(Venta venta) {
+void InterfazSQL::registarVenta(float subtotal, float iva, float total) {
+
 	std::string query = "INSERT INTO ventas"
 						"(fecha_venta, subtotal_venta, iva_venta, total_venta)"
 						"VALUES(NOW(), ?, ?, ?)";
@@ -154,9 +170,9 @@ void InterfazSQL::registarVenta(Venta venta) {
 	std::unique_ptr<sql::PreparedStatement> pst(con->prepareStatement(query));
 
 	// Asociar ??? con variable
-	pst->setDouble(1, venta.subtotal);
-	pst->setDouble(2, venta.iva);
-	pst->setDouble(3, venta.total);
+	pst->setDouble(1, subtotal);
+	pst->setDouble(2, iva);
+	pst->setDouble(3, total);
 
 	// Ejecutar query
 	pst->executeUpdate();

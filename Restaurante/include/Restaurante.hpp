@@ -2,15 +2,22 @@
 
 #include <iostream>
 #include <memory>
-#include <unordered_set>
-#include <set>
+#include <map>
 
 #include <Common.hpp>
-#include "BD/InterfazSQL.hpp"
-#include "Mesas/Mesa.hpp"
-#include "Cocina/Cocina.hpp"
-#include "Ventas/ventas.hpp"
 
-const int _numMesas = 5;
+#include "../BD/InterfazSQL.hpp"
+#include "../Mesas/Mesa.hpp"
+#include "../Ventas/Ventas.hpp"
 
-std::map<int, std::shared_ptr<Mesa>> _mesas;
+namespace Restaurante {
+	//private:
+	const int NUM_MESAS = 5;
+
+	//public:
+	static std::map<int, std::shared_ptr<Mesa>> _mesas;
+
+	void iniciarMesas();
+	std::shared_ptr<Mesa> asignarMesa();
+
+};

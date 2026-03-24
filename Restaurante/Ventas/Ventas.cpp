@@ -1,32 +1,36 @@
 #include <iostream>
 #include "Ventas.hpp"
 
-float Ventas::calcularTotal(std::list<Platillo>& orden) {
+void Ventas::cerrarCuenta(int numMesa, std::list<Platillo>& orden) {
+	Cuenta cuenta;
+	std::cout << "===========CUENTA===============" << std::endl;
+
+	std::cout << "Mesa: " << numMesa << std::endl;
+	std::cout << "Platillo" << "\t" << "Costo" << std::endl;
+
 	float total = std::accumulate(orden.begin(), orden.end(), 0.0f,
 		[](float costo, Platillo& platillo) {
-			std::cout << platillo.id << "\t" << "$" << platillo.costo << std::endl;
+			std::cout << platillo.nombre << "\t$" << platillo.costo << std::endl;
 
 			return costo += platillo.costo;
 		});
 
-	return total;
-}
+	std::cout << "Total: " << "\t$" << total << std::endl;
+	std::cout << "================================" << std::endl;
 
-void Ventas::imprimirTotal(std::list<Platillo>& orden) {
-
-	std::cout << "Total: " << "\t" << "$" << calcularTotal(orden) << std::endl;
-}
-
-void Ventas::cerrarCuenta(std::list<Platillo>& orden) {
 	std::shared_ptr<InterfazSQL> isql = InterfazSQL::obtenerInstancia();
 
-	Venta venta;
+	cuenta.total = total;
+	cuenta.subtotal = cuenta.total * ((100.0f - IVA) / 100);
+	cuenta.iva = cuenta.total - cuenta.subtotal;
 
-	std::cout << "Calculando costo + IVA" << std::endl;
+	isql->registarVenta(cuenta.subtotal, cuenta.iva, cuenta.total);
 
-	venta.total = calcularTotal(orden);
-	venta.subtotal = venta.total * ((100.0f - IVA) / 100);
-	venta.iva = venta.total - venta.subtotal;
-
-	isql->registarVenta(venta);
 }
+
+void Ventas::mostrarHistorialVentas() {
+	std::shared_ptr<InterfazSQL> isql = InterfazSQL::obtenerInstancia();
+
+	isql->mostrarHistorialVentas();
+}
+

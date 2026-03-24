@@ -3,11 +3,14 @@ include_directories(${PROJECT_SOURCE_DIR}/Restaurante/include/)
 
 # Subcarpetas
 add_subdirectory ("BD")
+add_subdirectory ("Mesas")
+add_subdirectory ("Cocina")
+add_subdirectory ("Ventas")
 
 # Programa principal (ejecutable)
-add_executable (Restaurante "Restaurante.cpp" "Mesas/Mesa.cpp" "Cocina/Cocina.cpp" "Ventas/Ventas.cpp")
+add_executable (Restaurante "Restaurante.cpp")
 
-# Módulo BD
+# Módulos de los que depende el ejecutable
+target_link_libraries(Restaurante PRIVATE Mesas)
 target_link_libraries(Restaurante PRIVATE InterfazSQL)
-
-
+target_link_libraries(Restaurante PRIVATE Ventas)

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 enum class TipoElemento {
 	ALIMENTO,
 	BEBIDA
@@ -7,11 +9,12 @@ enum class TipoElemento {
 
 struct Platillo {
 	int id;
+	std::string nombre;
 	float costo;
 	TipoElemento tipo;
 };
 
-struct Venta {
+struct Cuenta {
 	float subtotal;
 	float iva;
 	float total;

@@ -3,18 +3,19 @@
 #include <list>
 #include <numeric>
 #include <Common.hpp>
-#include "../BD/InterfazSQL.hpp"
 
+#include "../BD/InterfazSQL.hpp"
+#include "../Mesas/Mesa.hpp"
 
 class Ventas {
+private:
+	const float IVA = 16.0f;
+
 public:
 
-	const float IVA = 16.0;
+	void cerrarCuenta(int numMesa, std::list<Platillo>& orden);
 
-	float calcularTotal(std::list<Platillo>& orden);
+	void mostrarHistorialVentas();
 
-	void imprimirTotal(std::list<Platillo>& orden);
-
-	void cerrarCuenta(std::list<Platillo>& orden);
 
 };
