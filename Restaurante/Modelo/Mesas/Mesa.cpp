@@ -16,27 +16,6 @@ void Mesa::setPrioridad(bool alta) {
 
 void Mesa::tomarOrden() {
 	std::shared_ptr<InterfazSQL> isql = InterfazSQL::obtenerInstancia();
-
-	Platillo platillo;
-	int id;
-
-	int num_platillos = 2;
-
-	// Orden del cliente
-	for (int i = 1; i <= num_platillos; i++) {
-		std::cout << "Platillo: ";
-		std::cin >> id;
-		platillo.id = id;
-		platillo = isql->obtenerInfoPlatillo(platillo.id);
-
-		comanda.push_back(platillo);
-
-	}
-
-	enviarOrden();
-}
-
-void Mesa::enviarOrden() {
 	auto cocina = Cocina::obtenerInstancia();
 
 	cocina->encolarOrden(numMesa, comanda, vip);

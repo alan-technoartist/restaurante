@@ -17,8 +17,6 @@ public:
 
 	void tomarOrden();
 
-	void enviarOrden();
-
 	void pagarCuenta();
 
 };

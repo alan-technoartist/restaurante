@@ -1,16 +1,17 @@
 ﻿# Carpeta de encabezados general
 include_directories(${PROJECT_SOURCE_DIR}/Restaurante/include/)
+#include_directories(${PROJECT_SOURCE_DIR}/Restaurante/Modelo/)
 
 # Subcarpetas
-add_subdirectory ("BD")
-add_subdirectory ("Mesas")
-add_subdirectory ("Cocina")
-add_subdirectory ("Ventas")
+add_subdirectory ("Modelo/")
+add_subdirectory ("Vista")
+add_subdirectory ("Controlador")
+
 
 # Programa principal (ejecutable)
 add_executable (Restaurante "Restaurante.cpp")
 
 # Módulos de los que depende el ejecutable
-target_link_libraries(Restaurante PRIVATE Mesas)
-target_link_libraries(Restaurante PRIVATE InterfazSQL)
-target_link_libraries(Restaurante PRIVATE Ventas)
+target_link_libraries(Restaurante PRIVATE Modelo)
+target_link_libraries(Restaurante PRIVATE Vista)
+target_link_libraries(Restaurante PRIVATE Controlador)
