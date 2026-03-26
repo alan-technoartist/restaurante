@@ -1,8 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <mysql/jdbc.h>
-#include <Common.hpp>
+#include "C:\Program Files\MySQL\MySQL Connector C++ 9.6\include\mysql\jdbc.h"
 
 class InterfazSQL {
 private:

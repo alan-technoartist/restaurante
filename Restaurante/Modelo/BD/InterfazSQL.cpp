@@ -1,5 +1,7 @@
 #include <iostream>
 #include <mysql/jdbc.h>
+#include <Common.hpp>
+
 
 #include "InterfazSQL.hpp"
 #include "Credenciales.hpp"

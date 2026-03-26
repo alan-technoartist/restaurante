@@ -5,7 +5,7 @@
 #include <Common.hpp>
 
 #include "../BD/InterfazSQL.hpp"
-#include "../Mesas/Mesa.hpp"
+#include "../Mesas/Mesas.hpp"
 
 class Ventas {
 private:

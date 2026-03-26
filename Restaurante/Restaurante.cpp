@@ -1,13 +1,14 @@
-﻿#include <iostream>
-#include "include/Restaurante.hpp"
+﻿#include "include/Restaurante.hpp"
 
 int main() {
-	std::shared_ptr<Modelo> modelo = std::make_shared<Modelo>();
-	std::shared_ptr<IVista> vista = std::make_shared<VistaCLI>();
+	auto modelo = std::make_shared<Modelo>();
+	auto controlador = std::make_shared<Controlador>(modelo);
 
-	Controlador controlador(modelo, vista);
+	// Objeto polimórfico
+	std::shared_ptr<IVista> vista = std::make_shared<VistaCLI>(controlador);
 
-	controlador.iniciar();
+	controlador->setVista(vista);
+	controlador->iniciar();
 
 	return 0;
 }

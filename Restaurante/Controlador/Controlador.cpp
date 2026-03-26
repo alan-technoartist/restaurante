@@ -1,14 +1,18 @@
 #include "Controlador.hpp"
+#include "../Modelo/Modelo.hpp"
+#include "../Vista/IVista.hpp"
 
-Controlador::Controlador(std::shared_ptr <Modelo> modelo,
-						 std::shared_ptr <IVista> vista) {
+Controlador::Controlador(std::shared_ptr <Modelo> modelo) {
 
 	this->modelo = modelo;
+}
+
+void Controlador::setVista(std::shared_ptr <IVista> vista) {
 	this->vista = vista;
 }
 
-int asignarMesa() {
-	auto mesa = modelo->asignarMesa();
+int Controlador::asignarMesa(bool prioridad) {
+	auto mesa = modelo->asignarMesa(prioridad);
 
 	if (mesa != nullptr) {
 		return mesa->numMesa;
@@ -66,7 +70,7 @@ void Controlador::iniciar() {
 			//vista->mostrarVentas();
 		}
 		else {
-			std::cout << "Opcion no válida" << std::endl;
+			//std::cout << "Opcion no válida" << std::endl;
 		}
 
 	} while (opcion != 6);

@@ -1,3 +1,5 @@
+include_directories(${PROJECT_SOURCE_DIR}/Restaurante/include/)
+
 # Directorio donde se instaló MySQL Connector C++
 set(MYSQL_DIR "C:/Program Files/MySQL/MySQL Connector C++ 9.6")
 

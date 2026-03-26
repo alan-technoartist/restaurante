@@ -6,6 +6,7 @@
 
 #include <Common.hpp>
 
+
 class Cocina {
 private:
 	std::deque< std::pair<int, std::list<Platillo> > > colaCocina;

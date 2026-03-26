@@ -9,7 +9,7 @@ add_subdirectory ("Ventas")
 # Programa principal (ejecutable)
 add_library (Modelo  "Modelo.cpp")
 
-target_link_libraries(Modelo PRIVATE BD)
+target_link_libraries(Modelo PRIVATE InterfazSQL)
 target_link_libraries(Modelo PRIVATE Cocina)
 target_link_libraries(Modelo PRIVATE Mesas)
 target_link_libraries(Modelo PRIVATE Ventas)

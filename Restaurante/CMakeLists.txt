@@ -7,9 +7,8 @@ add_subdirectory ("Modelo/")
 add_subdirectory ("Vista")
 add_subdirectory ("Controlador")
 
-
 # Programa principal (ejecutable)
-add_executable (Restaurante "Restaurante.cpp")
+add_executable (Restaurante "Restaurante.cpp" "include/Restaurante.hpp")
 
 # Módulos de los que depende el ejecutable
 target_link_libraries(Restaurante PRIVATE Modelo)

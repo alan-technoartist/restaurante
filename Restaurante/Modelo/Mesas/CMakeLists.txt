@@ -2,7 +2,7 @@
 #include_directories(${PROJECT_SOURCE_DIR}/Restaurante/include/)
 
 # Programa principal (ejecutable)
-add_library (Mesas  "Mesa.cpp")
+add_library (Mesas  "Mesas.cpp" "Mesas.hpp")
 
 target_link_libraries(Mesas PRIVATE InterfazSQL)
 target_link_libraries(Mesas PRIVATE Cocina)
