@@ -6,11 +6,18 @@
 void Mesas::setPrioridad(std::shared_ptr<Mesa> mesa, bool alta) {
 	if (alta)
 		mesa->vip = true;
+	else
+		mesa->vip = false;
 }
 
-void Mesas::tomarOrden(std::shared_ptr<Mesa> mesa) {
+void Mesas::procesarOrden(std::shared_ptr<Mesa> mesa) {
 	std::shared_ptr<InterfazSQL> isql = InterfazSQL::obtenerInstancia();
 	auto cocina = Cocina::obtenerInstancia();
+
+	// Llenar datos platillos
+	for (auto& p : mesa->comanda) {
+		p = isql->obtenerInfoPlatillo(p.id);
+	}
 
 	cocina->encolarOrden(mesa->numMesa, mesa->comanda, mesa->vip);
 }

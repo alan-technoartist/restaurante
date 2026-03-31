@@ -9,6 +9,7 @@
 
 class IVista {
 protected:
+
 	// Usamos weak pointer para evitar dependencia circular
 	// entre controlador <--> vista
 	std::weak_ptr<Controlador> controlador;
@@ -22,7 +23,9 @@ public:
 
 	virtual void asignarMesa() = 0;
 
-	virtual int tomarOrden(std::shared_ptr<std::list<Platillo>> comanda) = 0;
+	virtual int pedirMesa() = 0;
+
+	virtual std::shared_ptr<std::list<Platillo>> tomarOrden() = 0;
 
 	virtual int cerrarCuenta() = 0;
 

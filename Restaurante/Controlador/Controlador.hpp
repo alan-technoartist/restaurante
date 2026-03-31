@@ -26,7 +26,7 @@ public:
 
 	int asignarMesa(bool prioridad);
 
-	void tomarOrden(int numMesa, std::shared_ptr< std::list<Platillo> > comanda);
+	void procesarOrden(int numMesa, std::shared_ptr< std::list<Platillo> > comanda);
 
 	void cerrarCuenta(int numMesa);
 };

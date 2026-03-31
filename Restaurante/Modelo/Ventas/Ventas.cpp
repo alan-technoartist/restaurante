@@ -15,7 +15,7 @@ void Ventas::cerrarCuenta(int numMesa, std::list<Platillo>& orden) {
 			return costo += platillo.costo;
 		});
 
-	std::cout << "Total: " << "\t$" << total << std::endl;
+	std::cout << "Total: " << "\t\t$" << total << std::endl;
 	std::cout << "================================" << std::endl;
 
 	std::shared_ptr<InterfazSQL> isql = InterfazSQL::obtenerInstancia();

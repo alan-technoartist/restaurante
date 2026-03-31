@@ -25,8 +25,8 @@ std::map<int, std::shared_ptr<Mesa>>& Controlador::obtenerMesas() {
 	return modelo->obtenerMesas();
 }
 
-void Controlador::tomarOrden(int numMesa, std::shared_ptr< std::list<Platillo> > comanda) {
-	modelo->tomarOrden(numMesa, comanda);
+void Controlador::procesarOrden(int numMesa, std::shared_ptr< std::list<Platillo> > comanda) {
+	modelo->procesarOrden(numMesa, comanda);
 }
 
 void Controlador::cerrarCuenta(int numMesa) {
@@ -55,10 +55,10 @@ void Controlador::iniciar() {
 		else if (opcion == 3) {
 			// Pregunta num de mesa
 			// Pide platillos
-			auto comanda = std::make_shared< std::list<Platillo> >();
+			int numMesa = vista->pedirMesa();
+			std::shared_ptr<std::list<Platillo>> orden = vista->tomarOrden();
 
-			int numMesa = vista->tomarOrden(comanda);
-			tomarOrden(numMesa, comanda);
+			procesarOrden(numMesa, orden);
 		}
 		else if (opcion == 4) {
 			// Pregunta num de mesa
@@ -67,7 +67,7 @@ void Controlador::iniciar() {
 		}
 		else if (opcion == 4) {
 			// Imprime historial de ventas
-			//vista->mostrarVentas();
+			//vista->mostrarVentas(Ventas);
 		}
 		else {
 			//std::cout << "Opcion no válida" << std::endl;

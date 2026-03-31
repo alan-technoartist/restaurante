@@ -7,7 +7,7 @@ public:
 
 	void setPrioridad(std::shared_ptr<Mesa> mesa, bool alta);
 
-	void tomarOrden(std::shared_ptr<Mesa> mesa);
+	void procesarOrden(std::shared_ptr<Mesa> mesa);
 
 	void pagarCuenta(std::shared_ptr<Mesa> mesa);
 

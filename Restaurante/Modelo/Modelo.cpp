@@ -43,12 +43,17 @@ std::shared_ptr<Mesa> Modelo::asignarMesa(bool prioridad) {
 	return mesa;
 }
 
-void Modelo::tomarOrden(int numMesa, std::shared_ptr< std::list<Platillo> > comanda) {
+void Modelo::procesarOrden(int numMesa, std::shared_ptr< std::list<Platillo> > comanda) {
 	_mesas[numMesa]->comanda = *comanda;
-	controlMesas->tomarOrden(_mesas[numMesa]);
+
+	controlMesas->procesarOrden(_mesas[numMesa]);
 }
 
 void Modelo::cerrarCuenta(int numMesa) {
 	//_mesas[numMesa]->pagarCuenta();
 	controlMesas->pagarCuenta(_mesas[numMesa]);
+}
+
+void Modelo::mostrarHistorialVentas() {
+	Ventas::mostrarHistorialVentas();
 }

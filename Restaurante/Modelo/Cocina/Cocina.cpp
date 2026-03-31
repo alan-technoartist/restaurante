@@ -27,12 +27,11 @@ void Cocina::encolarOrden(int numMesa, const std::list<Platillo>& platillos, boo
 }
 
 void Cocina::prepararOrden() {
-
-	for (const auto& platillo : colaCocina.front().second) {
-		std::cout << "Preparando " << platillo.nombre << std::endl;
-	}
-
+	// ...
+	// Orden lista, sacar de la cola
 	colaCocina.pop_front();
+
+	// Notificar
 }
 
 void Cocina::mostrarColaCocina() {

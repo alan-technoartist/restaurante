@@ -15,7 +15,7 @@ public:
 
 	void cerrarCuenta(int numMesa, std::list<Platillo>& orden);
 
-	void mostrarHistorialVentas();
+	static void mostrarHistorialVentas();
 
 
 };

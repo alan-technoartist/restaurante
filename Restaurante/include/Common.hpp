@@ -20,9 +20,9 @@ struct Platillo {
 };
 
 struct Cuenta {
-	float subtotal;
-	float iva;
-	float total;
+	float subtotal = 0;
+	float iva = 0;
+	float total = 0;
 };
 
 struct Mesa {
@@ -32,5 +32,8 @@ struct Mesa {
 	std::list<Platillo> comanda;
 	Cuenta cuenta;
 
-	Mesa(int n, bool d, bool v) : numMesa(n), disponible(d), vip(v){};
+	Mesa(int n, bool d, bool v) :
+		numMesa(n),
+		disponible(d),
+		vip(v) { }
 };

@@ -8,7 +8,7 @@ VistaCLI::VistaCLI(std::weak_ptr<Controlador> controlador) {
 void VistaCLI::mostrarMesas(const std::map<int, std::shared_ptr<Mesa>>& mesas) {
 	for (const auto& mesa : mesas) {
 		std::cout << "Mesa " << mesa.first << "\t"
-			<< mesa.second->disponible << std::endl;
+				  << ((mesa.second->disponible)? "Disponible" : "Ocupada") << std::endl;
 	}
 }
 
@@ -29,15 +29,20 @@ void VistaCLI::asignarMesa() {
 
 }
 
-int VistaCLI::tomarOrden(std::shared_ptr<std::list<Platillo>> comanda) {
+int VistaCLI::pedirMesa() {
 	int numMesa;
 	std::cout << "Numero de mesa: ";
 	std::cin >> numMesa;
 
+	return numMesa;
+}
+
+std::shared_ptr<std::list<Platillo>> VistaCLI::tomarOrden() {
 	int i = 1;
 
-	Platillo platillo;
+	std::shared_ptr<std::list<Platillo>> orden = std::make_shared<std::list<Platillo>>();
 
+	Platillo platillo;
 
 	// Orden del cliente
 	do {
@@ -47,11 +52,12 @@ int VistaCLI::tomarOrden(std::shared_ptr<std::list<Platillo>> comanda) {
 		std::cout << "Platillo " << i++ << ": ";
 		std::cin >> platillo.id;
 
-		comanda->push_back(platillo);
+		if (platillo.id != 10)
+			orden->push_back(platillo);
 
 	} while (platillo.id != 10);
 
-	return numMesa;
+	return orden;
 }
 
 int VistaCLI::cerrarCuenta() {

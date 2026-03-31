@@ -1,4 +1,5 @@
 #pragma once
+//#include <memory>
 #include <Common.hpp>
 #include "IVista.hpp"
 
@@ -12,7 +13,9 @@ public:
 
 	void asignarMesa() override;
 
-	int tomarOrden(std::shared_ptr<std::list<Platillo>> comanda) override;
+	int pedirMesa() override;
+
+	std::shared_ptr<std::list<Platillo>> tomarOrden() override;
 
 	int cerrarCuenta() override;
 
