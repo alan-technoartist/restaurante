@@ -23,7 +23,7 @@ public:
 
 	void mostrarMenu();
 
-	void mostrarHistorialVentas();
+	std::vector<std::string> mostrarHistorialVentas();
 
 	Platillo obtenerInfoPlatillo(int idPlatillo);
 

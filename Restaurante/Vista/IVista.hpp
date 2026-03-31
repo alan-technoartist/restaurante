@@ -29,6 +29,6 @@ public:
 
 	virtual int cerrarCuenta() = 0;
 
-	virtual void mostrarHistorialVentas() = 0;
+	virtual void mostrarHistorialVentas(std::vector<std::string> ventas) = 0;
 
 };

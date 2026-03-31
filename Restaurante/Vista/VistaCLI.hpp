@@ -1,5 +1,5 @@
 #pragma once
-//#include <memory>
+#include <vector>
 #include <Common.hpp>
 #include "IVista.hpp"
 
@@ -19,5 +19,5 @@ public:
 
 	int cerrarCuenta() override;
 
-	void mostrarHistorialVentas() override;
+	void mostrarHistorialVentas(std::vector<std::string> ventas) override;
 };

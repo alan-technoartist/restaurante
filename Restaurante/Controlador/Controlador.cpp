@@ -65,9 +65,9 @@ void Controlador::iniciar() {
 			int numMesa = vista->cerrarCuenta();
 			cerrarCuenta(numMesa);
 		}
-		else if (opcion == 4) {
+		else if (opcion == 5) {
 			// Imprime historial de ventas
-			//vista->mostrarVentas(Ventas);
+			vista->mostrarHistorialVentas(modelo->mostrarHistorialVentas());
 		}
 		else {
 			//std::cout << "Opcion no válida" << std::endl;

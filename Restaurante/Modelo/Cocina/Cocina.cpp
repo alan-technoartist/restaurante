@@ -19,8 +19,6 @@ void Cocina::encolarOrden(int numMesa, const std::list<Platillo>& platillos, boo
 	else {
 		colaCocina.push_back(orden);
 	}
-	/*std::cout << "Orden de mesa " << orden.first << " encolada con prioridad "
-		<< ((prioridad)?"ALTA":"NORMAL") << std::endl;*/
 
 	// Interfaz pública
 	prepararOrden();

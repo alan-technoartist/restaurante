@@ -50,10 +50,11 @@ void Modelo::procesarOrden(int numMesa, std::shared_ptr< std::list<Platillo> > c
 }
 
 void Modelo::cerrarCuenta(int numMesa) {
-	//_mesas[numMesa]->pagarCuenta();
 	controlMesas->pagarCuenta(_mesas[numMesa]);
 }
 
-void Modelo::mostrarHistorialVentas() {
-	Ventas::mostrarHistorialVentas();
+std::vector<std::string> Modelo::mostrarHistorialVentas() {
+	Ventas venta;
+
+	return venta.mostrarHistorialVentas();
 }

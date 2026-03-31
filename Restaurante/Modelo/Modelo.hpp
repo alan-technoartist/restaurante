@@ -33,6 +33,6 @@ public:
 
 	void cerrarCuenta(int numMesa);
 
-	void mostrarHistorialVentas();
+	std::vector<std::string> mostrarHistorialVentas();
 
 };

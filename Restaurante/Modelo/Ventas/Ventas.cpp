@@ -28,9 +28,9 @@ void Ventas::cerrarCuenta(int numMesa, std::list<Platillo>& orden) {
 
 }
 
-void Ventas::mostrarHistorialVentas() {
+std::vector<std::string> Ventas::mostrarHistorialVentas() {
 	std::shared_ptr<InterfazSQL> isql = InterfazSQL::obtenerInstancia();
 
-	isql->mostrarHistorialVentas();
+	return isql->mostrarHistorialVentas();
 }
 

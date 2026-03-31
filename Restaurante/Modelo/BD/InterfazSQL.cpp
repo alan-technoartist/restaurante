@@ -110,8 +110,10 @@ void InterfazSQL::mostrarMenu() {
 
 }
 
-void InterfazSQL::mostrarHistorialVentas() {
+std::vector<std::string> InterfazSQL::mostrarHistorialVentas() {
 	std::string query = "SELECT fecha_venta, total_venta FROM ventas ";
+
+	std::vector<std::string> stringRes;
 
 	// Crear objeto Statement
 	std::unique_ptr< sql::Statement > stmt(con->createStatement());
@@ -119,17 +121,17 @@ void InterfazSQL::mostrarHistorialVentas() {
 	// Ejecutar query y asignar a ResultSet
 	std::unique_ptr< sql::ResultSet > res(stmt->executeQuery(query));
 
-
-	std::cout << "===========VENTAS===============" << std::endl;
-
 	// Leer resultado
 	while (res->next()) {
-		std::cout << res->getString("fecha_venta") << "\t$"
+		/*std::cout << res->getString("fecha_venta") << "\t$"
 				  << res->getDouble("total_venta") << std::endl;
+				  */
+
+		stringRes.push_back(res->getString("fecha_venta") + "\t$" + res->getString("total_venta"));
+
 	}
 
-	std::cout << "================================" << std::endl;
-
+	return stringRes;
 }
 
 Platillo InterfazSQL::obtenerInfoPlatillo(int idPlatillo) {
@@ -179,7 +181,7 @@ void InterfazSQL::registarVenta(float subtotal, float iva, float total) {
 	// Ejecutar query
 	pst->executeUpdate();
 
-	std::cout << "Venta registrada en base de datos" << std::endl;
+	//std::cout << "Venta registrada en base de datos" << std::endl;
 }
 
 

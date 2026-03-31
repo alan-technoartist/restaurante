@@ -68,10 +68,13 @@ int VistaCLI::cerrarCuenta() {
 	return numMesa;
 }
 
-void VistaCLI::mostrarHistorialVentas() {
-	std::cout << "Historial de ventas: " << std::endl;
-	// while (...)
-	//controlador.obtenerHistorialVentas();
+void VistaCLI::mostrarHistorialVentas(std::vector<std::string> ventas) {
+	std::cout << "===========VENTAS===============" << std::endl;
+	for (const auto& v : ventas) {
+		std::cout << v << std::endl;
+	}
+	std::cout << "================================" << std::endl;
+
 }
 
 int VistaCLI::menuUsuario() {
