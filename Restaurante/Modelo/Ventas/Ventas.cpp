@@ -18,7 +18,7 @@ void Ventas::cerrarCuenta(int numMesa, std::list<Platillo>& orden) {
 	std::cout << "Total: " << "\t\t$" << total << std::endl;
 	std::cout << "================================" << std::endl;
 
-	std::shared_ptr<InterfazSQL> isql = InterfazSQL::obtenerInstancia();
+	std::shared_ptr<InterfazSQL> isql = AdaptadorMySQL::obtenerInstancia();
 
 	cuenta.total = total;
 	cuenta.subtotal = cuenta.total * ((100.0f - IVA) / 100);
@@ -29,7 +29,7 @@ void Ventas::cerrarCuenta(int numMesa, std::list<Platillo>& orden) {
 }
 
 std::vector<std::string> Ventas::mostrarHistorialVentas() {
-	std::shared_ptr<InterfazSQL> isql = InterfazSQL::obtenerInstancia();
+	std::shared_ptr<InterfazSQL> isql = AdaptadorMySQL::obtenerInstancia();
 
 	return isql->mostrarHistorialVentas();
 }

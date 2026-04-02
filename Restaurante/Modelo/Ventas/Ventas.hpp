@@ -4,7 +4,7 @@
 #include <numeric>
 #include <Common.hpp>
 
-#include "../BD/InterfazSQL.hpp"
+#include "../BD/MySQL/AdaptadorMySQL.hpp"
 #include "../Mesas/Mesas.hpp"
 
 class Ventas {

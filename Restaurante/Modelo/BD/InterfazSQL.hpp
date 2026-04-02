@@ -1,32 +1,14 @@
 #pragma once
 
-#include <iostream>
-#include "C:\Program Files\MySQL\MySQL Connector C++ 9.6\include\mysql\jdbc.h"
+#include <vector>
+#include <Common.hpp>
 
 class InterfazSQL {
-private:
-	std::unique_ptr<sql::Connection> con;
-
 public:
-	InterfazSQL();
 
-	static std::shared_ptr<InterfazSQL> obtenerInstancia();
+	virtual std::vector<std::string> mostrarHistorialVentas() = 0;
 
+	virtual Platillo obtenerInfoPlatillo(int idPlatillo) = 0;
 
-	void mostrarDatosBD(const std::string& campos,
-		const std::string& tabla,
-		const std::string& parametros);
-
-	void insertarDatosBD(const std::string& tabla,
-		const std::string& campos,
-		const std::string& valores);
-
-	void mostrarMenu();
-
-	std::vector<std::string> mostrarHistorialVentas();
-
-	Platillo obtenerInfoPlatillo(int idPlatillo);
-
-	void registarVenta(float subtotal, float iva, float total);
-
+	virtual void registarVenta(float subtotal, float iva, float total) = 0;
 };

@@ -2,6 +2,8 @@
 #include <list>
 #include <Common.hpp>
 
+#include "../BD/MySQL/AdaptadorMySQL.hpp"
+
 class Mesas {
 public:
 

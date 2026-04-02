@@ -11,7 +11,7 @@ void Mesas::setPrioridad(std::shared_ptr<Mesa> mesa, bool alta) {
 }
 
 void Mesas::procesarOrden(std::shared_ptr<Mesa> mesa) {
-	std::shared_ptr<InterfazSQL> isql = InterfazSQL::obtenerInstancia();
+	std::shared_ptr<InterfazSQL> isql = AdaptadorMySQL::obtenerInstancia();
 	auto cocina = Cocina::obtenerInstancia();
 
 	// Llenar datos platillos

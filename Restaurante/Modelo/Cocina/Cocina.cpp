@@ -26,10 +26,24 @@ void Cocina::encolarOrden(int numMesa, const std::list<Platillo>& platillos, boo
 
 void Cocina::prepararOrden() {
 	// ...
+	// 
+
+	// Notificar
+	for (auto observador : observadores) {
+		observador->callback();
+	}
+
 	// Orden lista, sacar de la cola
 	colaCocina.pop_front();
 
-	// Notificar
+}
+
+void Cocina::registrarObservador() {
+
+}
+
+void Cocina::desregistrarObservador() {
+
 }
 
 void Cocina::mostrarColaCocina() {
